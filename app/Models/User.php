@@ -4,13 +4,25 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
+    protected $table = 'usuarios';
     use HasApiTokens, HasFactory, Notifiable;
+
+    //FUNCION DE LA RELACION DE TABLA ROLES CON USERS
+    public function roles(){
+        return $this->belongsTo(Role::class);
+    }
+
+    // Relación de roles con usuarios
+   /* public function agremiados(){
+        return $this->belongsTo(User::class);
+    }*/
 
     /**
      * The attributes that are mass assignable.
@@ -18,9 +30,9 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
+        'NUE',
         'password',
+        'id_rol'
     ];
 
     /**
