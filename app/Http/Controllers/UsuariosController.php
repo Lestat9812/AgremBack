@@ -37,7 +37,7 @@ class UsuariosController extends Controller
     }
 
     public function newUsuario(Request $request){
-        $usuario = User::create($req->all());
+        $usuario = User::create($request->all());
         return response($usuario, 200);
     }
 }

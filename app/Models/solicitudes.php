@@ -11,6 +11,8 @@ class solicitudes extends Model
 
     protected $fillable = [
         'NUE',
-        'ruta_archivo'
+        'ruta_archivo',
+        'fecha_subida',
     ];
+
 }

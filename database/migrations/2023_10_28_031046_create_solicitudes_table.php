@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+
     /**
      * Run the migrations.
      */
@@ -13,8 +14,9 @@ return new class extends Migration
     {
         Schema::create('solicitudes', function (Blueprint $table) {
             $table->id();
-            $table->string('NUE')->unique();
-            $table->string('ruta_archivo');
+            $table->string('NUE');
+            $table->string('ruta_archivo'); // Cambié el nombre del campo
+            $table->timestamp('fecha_subida')->nullable();
             $table->foreign('NUE')->references('NUE')->on('agremiados')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });

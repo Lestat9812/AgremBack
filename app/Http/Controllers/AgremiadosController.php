@@ -33,16 +33,36 @@ class AgremiadosController extends Controller
 
         $agremiado = agremiados::create($request->all());
         User::create([
-                'NUE' => $request->NUE,
-                'password' => bcrypt($request->NUE),
-                'id_rol' => 2
-            ]);
-            return response($agremiado, 200);
-        }
+            'NUE' => $request->NUE,
+            'password' => bcrypt($request->NUE),
+            'id_rol' => 2
+        ]);
+        return response($agremiado, 200);
+    }
+
+    /* public function getAgremiado()
+    {
+        return response()->json(agremiados::all(), 200);
+    } */
 
     public function getAgremiado()
     {
-        return response()->json(agremiados::all(), 200);
+        $agremiados = Agremiados::join('usuarios', 'agremiados.NUE', '=', 'usuarios.NUE')
+            ->where('usuarios.id_rol', '=', 2)
+            ->select('agremiados.*')
+            ->get();
+
+        return response()->json($agremiados, 200);
+    }
+
+    public function getAdmin()
+    {
+        $admin = Agremiados::join('usuarios', 'agremiados.NUE', '=', 'usuarios.NUE')
+            ->where('usuarios.id_rol', '=', 1)
+            ->select('agremiados.*')
+            ->get();
+
+        return response()->json($admin, 200);
     }
 
     public function deleteAgremiadoById($id)
@@ -67,5 +87,4 @@ class AgremiadosController extends Controller
 
         return response()->json(['message' => 'Agremiado actualizado con éxito']);
     }
-
 }

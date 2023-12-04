@@ -25,6 +25,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::controller(AgremiadosController::class)->group(function (){
     Route::patch('actualizarAgremiado/{id}', 'updateagremiado');
     Route::get('obtenerAgremiados', 'getAgremiado');
+    Route::get('obtenerAdmin', 'getAdmin');
     Route::delete('eliminarAgremiado/{id}', 'deleteAgremiadoById');
     Route::post('agregarAgremiado', 'newAgremiado');
 
@@ -35,6 +36,7 @@ Route::controller(SolicitudesController::class)->group(function () {
     Route::get('obtenerSolicitud', 'getSolicitud');
     Route::delete('eliminarsolicitud/{id}', 'deleteSolicitudById');
     Route::post('agregarsolicitud', 'nuevasolicitud');
+    Route::get('app/public/ruta_del_archivo/{nombreArchivo}', 'descargarArchivo');
 });
 
 Route::controller(UsuariosController::class)->group(function () {

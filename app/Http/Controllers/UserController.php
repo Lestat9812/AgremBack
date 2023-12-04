@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\roles;
+use App\Models\role;
 use App\Models\User;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
@@ -30,8 +30,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $roles = roles::all();
-
+        $roles = role::all();
         return view('users.create', ['roles' => $roles]);
     }
 
@@ -137,7 +136,7 @@ public function nuevoAgremiado(Request $request)
      */
     public function edit(User $user)
     {
-        $roles = roles::all();
+        $roles = role::all();
         return view('users.show', ['user' => $user, 'roles' => $roles]);
     }
 
