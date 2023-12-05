@@ -23,7 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::controller(AgremiadosController::class)->group(function (){
-    Route::patch('actualizarAgremiado/{id}', 'updateagremiado');
+    Route::post('actualizarAgremiado/{id}', 'updateagremiado');
     Route::get('obtenerAgremiados', 'getAgremiado');
     Route::get('obtenerAdmin', 'getAdmin');
     Route::get('obtenerAgremiadoId/{id}','getAgremiadoById');
