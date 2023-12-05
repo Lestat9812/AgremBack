@@ -45,6 +45,17 @@ class AgremiadosController extends Controller
         return response()->json(agremiados::all(), 200);
     } */
 
+    public function getAgremiadoById($id){
+        
+        $agremiado = agremiados::find($id);
+        if (!$agremiado) {
+            return response()->json(['message' => 'Agremiado no encontrado'], 404);
+        }
+
+        return response()->json($agremiado, 200);
+
+    }
+
     public function getAgremiado()
     {
         $agremiados = Agremiados::join('usuarios', 'agremiados.NUE', '=', 'usuarios.NUE')

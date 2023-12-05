@@ -69,7 +69,7 @@ class SolicitudesController extends Controller
 }
 
 
-public function descargarArchivo($nombreArchivo)
+/* public function descargarArchivo($nombreArchivo)
 {
     $rutaArchivo = storage_path('app/public/ruta_del_archivo/' . $nombreArchivo);
 
@@ -80,6 +80,22 @@ public function descargarArchivo($nombreArchivo)
     $nombreDescarga = 'archivo_descargado.pdf'; // Nombre que aparecerá en el cuadro de diálogo de descarga
 
     return response()->download($rutaArchivo, $nombreDescarga);
+} */
+public function descargarArchivo($nombreArchivo)
+{
+    $rutaArchivo = storage_path('app/public/ruta_del_archivo/' . $nombreArchivo);
+
+    if (!File::exists($rutaArchivo)) {
+        abort(404);
+    }
+
+    $nombreOriginal = pathinfo($rutaArchivo, PATHINFO_FILENAME);
+    $extension = pathinfo($rutaArchivo, PATHINFO_EXTENSION);
+
+    $nombreDescarga = $nombreOriginal . '.' . $extension;
+
+    return response()->download($rutaArchivo, $nombreDescarga);
 }
+
 
 }
